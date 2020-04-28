@@ -13,4 +13,3 @@ class Config(object):
     CONSUMER_SECRET = os.getenv('CONSUMER_SECRET')
     ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
     ACCESS_SECRET = os.getenv('ACCESS_SECRET')
-    TAGS = ["#coronavirus", "#covid19", "#flask", "#python", "#เราไม่ทิ้งกัน", "#TikTok"]

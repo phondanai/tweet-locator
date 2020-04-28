@@ -12,9 +12,6 @@ from app import socketio
 from app.main import bp
 
 
-
-
-
 def get_centroid(polygon):
     """
     params polygon: GeoJson polygon
@@ -65,7 +62,7 @@ def start_filter_threadpool():
         auth = OAuthHandler(current_app.config.get("CONSUMER_KEY"), current_app.config.get("CONSUMER_SECRET"))
         auth.set_access_token(current_app.config.get("ACCESS_TOKEN"), current_app.config.get("ACCESS_SECRET"))
         api = tweepy.API(auth)
-        tags = current_app.config.get('TAGS') or ['#coronavirus']
+        tags = set([trend['name'] for trend in api.trends_place(1225448)[0]['trends']])
         twitter_stream = Stream(auth, MyListener())  # Create object for Twitter Streaming API
         twitter_stream.filter(track=tags) # Start getting all the tweets with the given tags
     thread = Thread(target=start_filter_thread)
